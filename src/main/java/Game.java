@@ -32,7 +32,7 @@ public class Game {
 
     public int getCompletedRoomCount(IWeapon player, EnemyRoom enemyRoom, TreasureRoom treasureRoom){
         for (Room room : this.rooms){
-            if(player.fight(enemyRoom) == true || player.getPoints(treasureRoom)){
+            if(player.clearEnemyRoom(enemyRoom) == true || player.getPoints(treasureRoom)){
                 this.completedRoom += 1;
             }
 

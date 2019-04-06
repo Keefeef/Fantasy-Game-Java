@@ -5,8 +5,8 @@ import Room.TreasureRoom;
 
 public class Cleric extends Player implements IHealingTool {
 
-    public Cleric(int healthPoints){
-        super(healthPoints);
+    public Cleric(int healthPoints, int attack){
+        super(healthPoints, attack);
     }
 
 

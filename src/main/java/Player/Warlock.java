@@ -5,10 +5,9 @@ import Room.TreasureRoom;
 
 public class Warlock extends Player implements ISpell {
     private int spell;
-    private int totalPower;
 
-    public Warlock(int healthPoints, int spell){
-        super(healthPoints);
+    public Warlock(int healthPoints, int attack, int spell){
+        super(healthPoints, attack);
         this.spell = spell;
     }
     public boolean castSpell(EnemyRoom enemyRoom){

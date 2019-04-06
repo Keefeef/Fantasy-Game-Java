@@ -5,10 +5,9 @@ import Room.TreasureRoom;
 
 public class Wizard extends Player implements ISpell {
     private int spell;
-    private int totalPower;
 
-    public Wizard(int healthPoints, int spell){
-        super(healthPoints);
+    public Wizard(int healthPoints, int attack, int spell){
+        super(healthPoints, attack);
         this.spell = spell;
     }
     public boolean castSpell(EnemyRoom enemyRoom){

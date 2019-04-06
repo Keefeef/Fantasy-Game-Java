@@ -20,6 +20,8 @@ public class TestGame {
     Barbarian barbarian;
     Warlock warlock;
     Cleric cleric;
+    Knight knight;
+    Dwarves dwarf;
 
 
 
@@ -36,7 +38,9 @@ public class TestGame {
         rooms.add(treasureRoom1);
         rooms.add(treasureRoom2);
         rooms.add(treasureRoom3);
-        barbarian = new Barbarian(20, 10);
+        knight = new Knight(20,10,3,5);
+        barbarian = new Barbarian(20, 10, 3);
+        dwarf = new Dwarves(15, 10, 5);
         game = new Game(rooms, barbarian, warlock, cleric);
     }
 
@@ -48,19 +52,47 @@ public class TestGame {
 
     @Test
     public void canWinGame(){
-        barbarian.fight(enemyRoom1);
+        barbarian.attackEnemy(enemyRoom1);
+        barbarian.clearEnemyRoom(enemyRoom1);
         barbarian.getPoints(treasureRoom1);
-        barbarian.fight(enemyRoom2);
+        barbarian.attackEnemy(enemyRoom2);
+        barbarian.clearEnemyRoom(enemyRoom2);
         barbarian.getPoints(treasureRoom2);
         barbarian.getPoints(treasureRoom3);
         assertEquals(true, game.winGame(barbarian, enemyRoom1, treasureRoom1));
     }
 
     @Test
+    public void knightCanWinGame(){
+        knight.attackEnemy(enemyRoom1);
+        knight.clearEnemyRoom(enemyRoom1);
+        knight.getPoints(treasureRoom1);
+        knight.attackEnemy(enemyRoom2);
+        knight.clearEnemyRoom(enemyRoom2);
+        knight.getPoints(treasureRoom2);
+        knight.getPoints(treasureRoom3);
+        assertEquals(true, game.winGame(knight, enemyRoom1, treasureRoom1));
+    }
+
+    @Test
+    public void dwarfCanWinGame(){
+        dwarf.attackEnemy(enemyRoom1);
+        dwarf.clearEnemyRoom(enemyRoom1);
+        dwarf.getPoints(treasureRoom1);
+        dwarf.attackEnemy(enemyRoom2);
+        dwarf.clearEnemyRoom(enemyRoom2);
+        dwarf.getPoints(treasureRoom2);
+        dwarf.getPoints(treasureRoom3);
+        assertEquals(true, game.winGame(dwarf, enemyRoom1, treasureRoom1));
+    }
+
+    @Test
     public void canGetCompletedRoomCount(){
-        barbarian.fight(enemyRoom1);
+        barbarian.attackEnemy(enemyRoom1);
+        barbarian.clearEnemyRoom(enemyRoom1);
         barbarian.getPoints(treasureRoom1);
-        barbarian.fight(enemyRoom2);
+        barbarian.attackEnemy(enemyRoom2);
+        barbarian.clearEnemyRoom(enemyRoom2);
         barbarian.getPoints(treasureRoom2);
         barbarian.getPoints(treasureRoom3);
         assertEquals(5, game.getCompletedRoomCount(barbarian, enemyRoom1, treasureRoom1));

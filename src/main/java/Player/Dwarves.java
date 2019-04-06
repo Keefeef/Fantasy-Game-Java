@@ -5,10 +5,9 @@ import Room.TreasureRoom;
 
 public class Dwarves extends Player implements IWeapon{
     private int weapon;
-    private int totalPower;
 
-    public Dwarves(int healthPoints, int weapon){
-        super(healthPoints);
+    public Dwarves(int healthPoints, int attack, int weapon){
+        super(healthPoints, attack);
         this.weapon = weapon;
     }
 
@@ -17,8 +16,9 @@ public class Dwarves extends Player implements IWeapon{
     }
 
     public int getTotalPower(){
-        int totalPower = this.healthPoints + this.weapon;
-        return totalPower;
+        int power = this.attack + this.weapon;
+        int overallAttack = power + getRandomValue();
+        return overallAttack;
     }
 
 
@@ -26,15 +26,31 @@ public class Dwarves extends Player implements IWeapon{
         this.weapon = weapon;
     }
 
-    public boolean fight(EnemyRoom enemyRoom){
-        if (getTotalPower() > enemyRoom.getTotalPower()){
-            this.healthPoints -= enemyRoom.getTotalPower();
-            return true;
-        }return false;
-    }
+//    public boolean fight(EnemyRoom enemyRoom){
+//        if (getTotalPower() > enemyRoom.getTotalPower()){
+//            this.healthPoints -= enemyRoom.getTotalPower();
+//            return true;
+//        }return false;
+//    }
     public boolean getPoints(TreasureRoom treasureRoom){
         this.healthPoints += treasureRoom.getPoints();
         return true;
+    }
+
+    public int attackEnemy(EnemyRoom enemyRoom){
+        int totalPower = getTotalPower();
+        int enemyHealth = enemyRoom.getPoints() - totalPower;
+        return enemyHealth;
+    }
+
+    public void enemyAttack(EnemyRoom enemyRoom){
+        this.healthPoints -= enemyRoom.getPoints() / 2;
+    }
+
+    public boolean clearEnemyRoom(EnemyRoom enemyRoom){
+        if (attackEnemy(enemyRoom) >= 0){
+            return true;
+        }return false;
     }
 }
 
