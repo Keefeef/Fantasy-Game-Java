@@ -5,6 +5,6 @@ import Room.TreasureRoom;
 
 public interface IHealingTool {
 
-    public boolean heal(EnemyRoom enemyRoom);
+    public void heal(Player player);
     public boolean getPoints(TreasureRoom treasureRoom);
 }
